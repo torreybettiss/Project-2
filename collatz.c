@@ -1,4 +1,4 @@
-/* version 1.2
+/* 
  * @File:   collatz.c
  * @authors Ashley Miller / Torrey Bettis
  * @date 9/25/2016
@@ -73,36 +73,31 @@ void * collatz(void * num)
     long  maxRange = *(long*)num;
     long  n = 0;
     counter = 2;   
-   // printf("max range: %ld\n",maxRange);
+    
  
     while(counter <= maxRange)
     {   
         stoppingTime = 0;
 	n = counter;
         counter++;
-       
-                
-        
+               
         while(1)
         {
            //Stopping condition
            if(n == 1)
            {
                incrementHistogram(stoppingTime, histogram);
-	     
-               break;
+	       break;
            }
            else if(n % 2 == 0) //If n is even test
            {
                n = n/2;
                stoppingTime++;
-               printf("%ld\n", stoppingTime);
            }
            else //Else number is assumed odd
            {
                n = 3 * n + 1;
                stoppingTime++;
-               printf("%ld\n", stoppingTime);
            }
        }
     }
@@ -111,11 +106,20 @@ void * collatz(void * num)
 
 void incrementHistogram(long index, long * histogram)
 {
-    //Incrementing value at index by 
+    //Incrementing value at index by 1
     histogram[index]++;
 }
 
+void printHistogram(long * histogram)
+{
+   int i = 0;
 
+   while(i < SIZE)
+   {
+      printf("%i, %ld\n", i + 1, histogram[i]);
+      i++;
+   }
+}
 
 
 
