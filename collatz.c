@@ -116,7 +116,7 @@ void printHistogram(long * histogram)
 
    while(i < SIZE)
    {
-      printf("%i, %ld\n", i + 1, histogram[i]);
+      printf("%i, <%ld>\n", i + 1, histogram[i]);
       i++;
    }
 }

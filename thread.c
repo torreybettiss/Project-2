@@ -16,7 +16,6 @@
 #include "collatz.h"
 
 
-
 void threadCreate(char** argv, long counter)
 {
     struct timespec start, stop;
@@ -65,7 +64,7 @@ void threadCreate(char** argv, long counter)
         
     }
     
-    totalTime/=1000000;
+    totalTime /= 1000000;
     
     printHistogram(histogram);    
     fprintf(stderr,"%ld, %ld, %.9f\n",maxRange, tArray,totalTime);
