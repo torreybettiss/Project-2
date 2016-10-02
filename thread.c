@@ -1,4 +1,4 @@
-/* version 1.2
+/* 
  * @File:   thread.c
  * @authors Ashley Miller / Torrey Bettis
  * @date 9/25/2016
@@ -11,15 +11,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
-#include <inttypes.h>
 #include <time.h>
 #include "thread.h"
 #include "collatz.h"
 
-/*
-
-*/
-#define BILLION  1000000000L
 
 
 void threadCreate(char** argv, long counter)
@@ -31,10 +26,7 @@ void threadCreate(char** argv, long counter)
     long maxRange;
     void * param;
     long tArray;
-   // float timeStart[tArray];
-   // float timeStop[tArray];
-   // float totTime[tArray];
-    
+   
     //copying the character value for the max range to buffer
     strcpy(buffer, argv[1]);
     
@@ -51,19 +43,14 @@ void threadCreate(char** argv, long counter)
     //declaring the array for the thread with the tArray size
     pthread_t thread[tArray];
 
-   
-   
-    clock_gettime(CLOCK_THREAD_CPUTIME_ID,&start);
+    //getting the start time for the clock
+    clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start);
+
     for(i=0; i<tArray; i++)
     {
-       //getting the start time for the clock
-       
-      
-       
        //creating the thread to be ran
        pthread_create(&thread[i], NULL, &collatz,&param);
-     
-
+       
        //getting the time the thread finished running the collatz functiion
        clock_gettime(CLOCK_PROCESS_CPUTIME_ID,&stop);
 
@@ -71,24 +58,19 @@ void threadCreate(char** argv, long counter)
        totalTime= ((stop.tv_sec - start.tv_sec) + (stop.tv_nsec - start.tv_nsec));
     }
     
-    clock_gettime(CLOCK_PROCESS_CPUTIME_ID,&stop);
-
-       //The total time the thread ran the collatz function
-       totalTime= ((stop.tv_sec - start.tv_sec) + (stop.tv_nsec - start.tv_nsec));
-    
     for(j=0; j<tArray; j++)
     {
         //suspends execution of the calling thread until the target thread terminates
         pthread_join(thread[j],NULL);
         
     }
-
     
     totalTime/=1000000;
     
+    printHistogram(histogram);    
+    fprintf(stderr,"%ld, %ld, %.9f\n",maxRange, tArray,totalTime);
     
-    printf("%ld , %ld, %.9f\n",maxRange, tArray,totalTime);
-    
+
     pthread_exit(NULL);
 }
 

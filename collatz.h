@@ -1,4 +1,4 @@
-/* version 1.2
+/* 
  * @File:   collatz.h
  * @authors Ashley Miller / Torrey Bettis
  * @date 9/25/2016
@@ -7,7 +7,7 @@
 
 #ifndef COLLATZ_H
 #define COLLATZ_H
-#define SIZE 50
+#define SIZE 1000
 long histogram[SIZE];
 long counter;
 
@@ -53,6 +53,14 @@ void * collatz(void *);
  * @returns: nothing
  */
 void incrementHistogram(long, long*);
+
+/*
+ * Prints the values in the histogram array
+ * to stderr
+ * @param: histogram
+ * @returns: nothing
+*/
+void printHistogram(long *);
 
 #endif /* COLLATZ_H */
 

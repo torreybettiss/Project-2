@@ -1,4 +1,4 @@
-/* version 1.2
+/* 
  * @File:   thread.h
  * @authors Ashley Miller / Torrey Bettis
  * @date 9/25/2016
@@ -7,8 +7,6 @@
 
 #ifndef THREAD_H
 #define THREAD_H
-
-
 
 /*
  This function will create argv[2] number of threads,
